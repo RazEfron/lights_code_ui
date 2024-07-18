@@ -1,0 +1,41 @@
+.lights {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.light {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.light input {
+  display: none;
+}
+
+.light-indicator {
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 50%;
+  margin-top: 5px;
+  transition: background-color 0.3s;
+}
+
+.light-indicator.on {
+  background-color: green;
+}
+
+.light-indicator.off {
+  background-color: red;
+}
+
+.time-unit {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
