@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LightControlForm.css";
 
-const LightControlForm = () => {
+const LightControlForm = ({ onSubmit, colors }) => {
   const [lights, setLights] = useState(Array(8).fill(false));
   const [timeUnit, setTimeUnit] = useState(0.05);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const keyIndex = "asdfjkl;".indexOf(e.key);
+      if (keyIndex !== -1) {
+        handleLightChange(keyIndex);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [lights]);
 
   const handleLightChange = (index) => {
     const newLights = [...lights];
@@ -13,25 +28,30 @@ const LightControlForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const binaryString =
-      "0b" + lights.map((light) => (light ? "1" : "0")).join("");
-    const timeInMilliseconds = timeUnit * 1000;
-    console.log(`Binary String: ${binaryString}`);
-    console.log(`Time Unit in ms: ${timeInMilliseconds}`);
+    const data = { lights, timeUnit: timeUnit * 1000 };
+    onSubmit(data);
+    setLights(Array(8).fill(false));
+    setTimeUnit(0.05);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="lights">
         {lights.map((light, index) => (
-          <label key={index} className="light">
-            <input
-              type="checkbox"
-              checked={light}
-              onChange={() => handleLightChange(index)}
-            />
-            <span className={`light-indicator ${light ? "on" : "off"}`}></span>
-          </label>
+          <div key={index} className="light-container">
+            <label className="light">
+              <input
+                type="checkbox"
+                checked={light}
+                onChange={() => handleLightChange(index)}
+                style={{ display: "none" }}
+              />
+              <span
+                className={`light-indicator ${light ? "on" : "off"}`}
+                style={{ backgroundColor: light ? colors[index] : "gray" }}
+              ></span>
+            </label>
+          </div>
         ))}
       </div>
       <div className="time-unit">

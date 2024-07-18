@@ -1,7 +1,6 @@
 import { useState } from "react";
 // import './App.css'
-import LightControlForm from './LightControlForm';
-
+import LightControlApp from "./LightControlApp";
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
           <h1>Light Control Form</h1>
         </header>
         <main>
-          <LightControlForm />
+          <LightControlApp />
         </main>
       </div>
     </>
