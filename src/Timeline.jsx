@@ -1,38 +1,22 @@
 // Timeline.js
-import React, { useState } from "react";
+import React from "react";
 import "./Timeline.css";
 import LightDisplay from "./LightDisplay";
 
 const Timeline = ({ formData, colors, onUpdate }) => {
-  const [editIndices, setEditIndices] = useState([]);
-  const [editedTimeUnit, setEditedTimeUnit] = useState(null);
-
-  const handleSave = () => {
-    editIndices.forEach((index) => {
-      onUpdate(index, { ...formData[index], timeUnit: editedTimeUnit });
-    });
-    setEditIndices([]);
-  };
-
-  const handleTimeChange = (e) => {
-    setEditedTimeUnit(parseFloat(e.target.value));
+  const handleSave = (index, updatedTimeUnit) => {
+    onUpdate(index, { ...formData[index], timeUnit: updatedTimeUnit });
   };
 
   return (
     <div className="timeline">
       {formData.map((data, index) => (
-        <div
-          key={index}
-          className={`timeline-segment ${
-            editIndices.includes(index) ? "editing" : ""
-          }`}
-        >
+        <div key={index} className={`timeline-segment`}>
           <div className="timeline-lights">
             <LightDisplay
               data={data}
               colors={colors}
               index={index}
-              isEditing={editIndices.includes(index)}
               onUpdate={onUpdate}
             />
           </div>
@@ -41,19 +25,16 @@ const Timeline = ({ formData, colors, onUpdate }) => {
               Time Unit (0.05 to 10 seconds):
               <input
                 type="number"
-                value={editedTimeUnit}
+                value={data.timeUnit / 1000}
                 min="0.05"
                 max="10"
                 step="0.01"
-                onChange={handleTimeChange}
+                onChange={(e) => handleSave(index, parseFloat(e.target.value) * 1000)}
               />
             </label>
           </div>
         </div>
       ))}
-      <button className="save-button" onClick={handleSave}>
-        Save Changes
-      </button>
     </div>
   );
 };

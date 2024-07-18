@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./LightDisplay.css";
 
 const LightDisplay = ({ data, colors, index, isEditing, onUpdate }) => {
+    console.log(data)
   const [lights, setLights] = useState(data.lights);
 
   const handleLightChange = (lightIndex) => {
@@ -17,10 +18,10 @@ const LightDisplay = ({ data, colors, index, isEditing, onUpdate }) => {
 
   return (
     <div className="light-display">
-      <div className="lights">
+      <div className="lights timeline-lights">
         {lights.map((light, lightIndex) => (
-          <div key={lightIndex} className="light-container">
-            <label className="light">
+          <div key={lightIndex} className="light-container no-margin">
+            <label className="light rectangle">
               <input
                 type="checkbox"
                 checked={light}
@@ -28,9 +29,10 @@ const LightDisplay = ({ data, colors, index, isEditing, onUpdate }) => {
                 style={{ display: "none" }}
               />
               <span
-                className={`light-indicator ${light ? "on" : "off"}`}
+                className={`light-indicator rect ${light ? "on" : "off"}`}
                 style={{
                   backgroundColor: light ? colors[lightIndex] : "gray",
+                  height: data.timeUnit
                 }}
               />
             </label>
