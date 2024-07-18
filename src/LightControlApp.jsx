@@ -1,3 +1,4 @@
+// LightControlApp.jsx
 import React, { useState } from "react";
 import LightControlForm from "./LightControlForm";
 import Timeline from "./Timeline";
@@ -24,6 +25,31 @@ const LightControlApp = () => {
     setColors(newColors);
   };
 
+  const createInoFile = () => {
+    // Prepare content for .ino file
+    let fileContent = `// Arduino .ino file\n`;
+    formData.forEach((data, index) => {
+      fileContent += `// Form ${index + 1}:\n`;
+      fileContent += `// Lights: ${data.lights.join(", ")}\n`;
+      fileContent += `// Time Unit: ${data.timeUnit}\n\n`;
+    });
+
+    // Create a Blob with the file content
+    const blob = new Blob([fileContent], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    // Create a link element
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "arduino_code.ino"; // Set the file name
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Clean up
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="LightControlApp">
       <h1>Light Control Forms</h1>
@@ -46,6 +72,9 @@ const LightControlApp = () => {
         </div>
       </div>
       <Timeline formData={formData} colors={colors} onUpdate={handleUpdate} />
+      <button className="create-file-button" onClick={createInoFile}>
+        Create .ino File
+      </button>
     </div>
   );
 };
