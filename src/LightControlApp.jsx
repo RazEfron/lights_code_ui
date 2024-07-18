@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LightControlForm from "./LightControlForm";
-import LightDisplay from "./LightDisplay";
+import Timeline from "./Timeline";
 import "./LightControlApp.css";
 
 const LightControlApp = () => {
@@ -8,7 +8,8 @@ const LightControlApp = () => {
   const [colors, setColors] = useState(Array(8).fill("#ff0000"));
 
   const handleFormSubmit = (data) => {
-    setFormData((prevData) => [...prevData, data]);
+    const newData = { ...data, id: Date.now() };
+    setFormData((prevData) => [...prevData, newData]);
   };
 
   const handleUpdate = (index, updatedData) => {
@@ -26,13 +27,14 @@ const LightControlApp = () => {
   return (
     <div className="LightControlApp">
       <h1>Light Control Forms</h1>
+      <LightControlForm onSubmit={handleFormSubmit} colors={colors} />
       <div className="color-picker">
         <h2>Choose Light Colors:</h2>
         <div className="color-picker-container">
           {colors.map((color, index) => (
             <div key={index} className="color-picker-item">
               <label>
-                Choose Color
+                Light {index + 1} Color:
                 <input
                   type="color"
                   value={color}
@@ -43,16 +45,7 @@ const LightControlApp = () => {
           ))}
         </div>
       </div>
-      <LightControlForm onSubmit={handleFormSubmit} colors={colors} />
-      {formData.map((data, index) => (
-        <LightDisplay
-          key={index}
-          data={data}
-          index={index}
-          colors={colors}
-          onUpdate={handleUpdate}
-        />
-      ))}
+      <Timeline formData={formData} colors={colors} onUpdate={handleUpdate} />
     </div>
   );
 };

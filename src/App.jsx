@@ -7,7 +7,6 @@ function App() {
     <>
       <div className="App">
         <header className="App-header">
-          <h1>Light Control Form</h1>
         </header>
         <main>
           <LightControlApp />

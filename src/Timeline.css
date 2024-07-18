@@ -1,0 +1,45 @@
+/* Timeline.css */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.timeline-segment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.timeline-lights {
+  display: flex;
+  flex-grow: 1;
+}
+
+.timeline-light {
+  flex-grow: 1;
+  height: 30px;
+  transition: background-color 0.3s;
+}
+
+.timeline-light.on {
+  box-shadow: 0 0 10px 2px currentColor, 0 0 20px 5px currentColor,
+    0 0 30px 10px currentColor;
+}
+
+.timeline-light.off {
+  box-shadow: none;
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+}
+
+.timeline-controls label {
+  margin-right: 10px;
+}
+
+.edit-button {
+  margin-left: 10px;
+}
