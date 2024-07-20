@@ -22,7 +22,6 @@ const Timeline = ({ formData, colors, onUpdate }) => {
           </div>
           <div className="timeline-controls">
             <label>
-              Time Unit (0.05 to 10 seconds):
               <input
                 type="number"
                 value={data.timeUnit / 1000}

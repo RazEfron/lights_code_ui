@@ -32,10 +32,15 @@ button {
 }
 
 .light-indicator.on {
-  box-shadow: 0 0 50px #fff,
-  0 0 100px #fff;
+  box-shadow: 0 0 50px #fff, 0 0 100px #fff;
   background: #fff;
   border-radius: 50%;
 }
 
-.lights-form {}
+.color-form {
+  background: #100909;
+  border: 3px solid #8e8e8e;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+}

@@ -43,40 +43,48 @@ const LightControlForm = ({ onSubmit, colors }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="lights">
-        {lights.map((light, index) => (
-          <div key={index} className="light-container">
-            <label className="light">
-              <input
-                type="checkbox"
-                checked={light}
-                onChange={() => handleLightChange(index)}
-                style={{ display: "none" }}
-              />
-              <span
-                className={`light-indicator ${light ? "on" : "off"}`}
-                style={{ backgroundColor: light ? colors[index] : "gray" }}
-              ></span>
-            </label>
-          </div>
-        ))}
-      </div>
-      <div className="time-unit">
-        <label>
-          Time Unit (0.05 to 10 seconds):
-          <input
-            type="number"
-            value={timeUnit}
-            min="0.05"
-            max="10"
-            step="0.01"
-            onChange={(e) => setTimeUnit(parseFloat(e.target.value))}
-          />
-        </label>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="color-form">
+      <form  onSubmit={handleSubmit}>
+        <div className="lights">
+          {lights.map((light, index) => (
+            <div key={index} className="light-container">
+              <label className="light">
+                <input
+                  type="checkbox"
+                  checked={light}
+                  onChange={() => handleLightChange(index)}
+                  style={{ display: "none" }}
+                />
+                <span
+                  className={`light-indicator ${light ? "on" : "off"}`}
+                  style={{ backgroundColor: light ? colors[index] : "gray" }}
+                ></span>
+              </label>
+            </div>
+          ))}
+        </div>
+        <div className="time-unit">
+          <label>
+            Time Unit (0.05 to 10 seconds):
+            <input
+              type="number"
+              value={timeUnit}
+              min="0.05"
+              max="10"
+              step="0.01"
+              onChange={(e) => setTimeUnit(parseFloat(e.target.value))}
+            />
+          </label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <button
+        className="create-file-button"
+        onClick={() => createInoFile(formData)}
+      >
+        Create .ino File
+      </button>
+    </div>
   );
 };
 

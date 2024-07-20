@@ -13,3 +13,8 @@
   align-items: center;
   margin: 0 10px;
 }
+
+.app-container {
+  display: grid;
+  grid-template-columns: 7fr 10fr;
+}
