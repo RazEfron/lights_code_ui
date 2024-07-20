@@ -7,7 +7,7 @@ const LightControlForm = ({ onSubmit, colors }) => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      const keyIndex = "asdfjkl;".indexOf(e.key);
+      const keyIndex = "12345678".indexOf(e.key);
       if (keyIndex !== -1) {
         handleLightChange(keyIndex);
       }
