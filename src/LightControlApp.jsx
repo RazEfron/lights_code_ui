@@ -4,10 +4,12 @@ import LightControlForm from "./LightControlForm";
 import Timeline from "./Timeline";
 import "./LightControlApp.css";
 import ColorPicker from "./ColorPicker";
+import { generateRainbowColors } from "./helpers/helpers";
 
 const LightControlApp = () => {
   const [formData, setFormData] = useState([]);
-  const [colors, setColors] = useState(Array(8).fill("#ff0000"));
+  const [colors, setColors] = useState(generateRainbowColors(8));
+  console.log(colors);
 
   const handleFormSubmit = (data) => {
     const newData = { ...data, id: Date.now() };
@@ -32,9 +34,13 @@ const LightControlApp = () => {
       <div className="app-container">
         <div>
           <ColorPicker colors={colors} onColorChange={handleColorChange} />
-          <LightControlForm onSubmit={handleFormSubmit} colors={colors} formData={formData} />
+          <LightControlForm
+            onSubmit={handleFormSubmit}
+            colors={colors}
+            formData={formData}
+          />
         </div>
-        <Timeline formData={formData} colors={colors} onUpdate={handleUpdate}  />
+        <Timeline formData={formData} colors={colors} onUpdate={handleUpdate} />
       </div>
     </div>
   );

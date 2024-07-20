@@ -45,7 +45,8 @@ const LightControlForm = ({ onSubmit, colors, formData }) => {
 
   return (
     <div className="color-form">
-      <form  onSubmit={handleSubmit}>
+      <h2>Choose your lights:</h2>
+      <form onSubmit={handleSubmit}>
         <div className="lights">
           {lights.map((light, index) => (
             <div key={index} className="light-container">
@@ -77,14 +78,16 @@ const LightControlForm = ({ onSubmit, colors, formData }) => {
             />
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <div className="buttons">
+          <button type="submit">Submit</button>
+          <button
+            className="create-file-button"
+            onClick={() => createInoFile(formData)}
+          >
+            Create .ino File
+          </button>
+        </div>
       </form>
-      <button
-        className="create-file-button"
-        onClick={() => createInoFile(formData)}
-      >
-        Create .ino File
-      </button>
     </div>
   );
 };
