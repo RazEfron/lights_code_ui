@@ -2,13 +2,14 @@
 import React, { useState } from "react";
 import "./LightDisplay.css";
 
-const LightDisplay = ({ data, colors, index, isEditing, onUpdate }) => {
+const LightDisplay = ({ data, colors, index, onUpdate }) => {
     console.log(data)
   const [lights, setLights] = useState(data.lights);
 
   const handleLightChange = (lightIndex) => {
     const newLights = [...lights];
     newLights[lightIndex] = !newLights[lightIndex];
+    onUpdate(index, { ...data, lights: newLights });
     setLights(newLights);
   };
 
