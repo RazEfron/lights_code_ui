@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./LightControlForm.css";
+import { createInoFile } from "./helpers/helpers";
 
-const LightControlForm = ({ onSubmit, colors }) => {
+const LightControlForm = ({ onSubmit, colors, formData }) => {
   const [lights, setLights] = useState(Array(8).fill(false));
   const [timeUnit, setTimeUnit] = useState(0.05);
 

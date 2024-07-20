@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import LightControlForm from "./LightControlForm";
 import Timeline from "./Timeline";
 import "./LightControlApp.css";
-import { createInoFile } from "./helpers/helpers";
 import ColorPicker from "./ColorPicker";
 
 const LightControlApp = () => {
@@ -33,9 +32,9 @@ const LightControlApp = () => {
       <div className="app-container">
         <div>
           <ColorPicker colors={colors} onColorChange={handleColorChange} />
-          <LightControlForm onSubmit={handleFormSubmit} colors={colors} />
+          <LightControlForm onSubmit={handleFormSubmit} colors={colors} formData={formData} />
         </div>
-        <Timeline formData={formData} colors={colors} onUpdate={handleUpdate} createInoFile={createInoFile} />
+        <Timeline formData={formData} colors={colors} onUpdate={handleUpdate}  />
       </div>
     </div>
   );
