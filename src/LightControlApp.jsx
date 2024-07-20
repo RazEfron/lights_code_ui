@@ -27,7 +27,7 @@ const LightControlApp = () => {
 
   const createInoFile = () => {
     console.log("Form Data:", formData);
-    let fileContent;
+    let fileContent = "";
     fileContent += `const int tu=250;        // time unit 0.25 seconds\n`;
     fileContent += `const int arr_length=${formData.length};\n\n`;
     fileContent += `int arrayA7out[ arr_length ] = { \n`;
