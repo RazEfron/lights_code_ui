@@ -11,6 +11,14 @@ const LightControlForm = ({ onSubmit, colors }) => {
       if (keyIndex !== -1) {
         handleLightChange(keyIndex);
       }
+      if (e.key === "ArrowUp") {
+        setTimeUnit((prevTimeUnit) => Math.max(prevTimeUnit - 0.05, 0.05));
+      } else if (e.key === "ArrowDown") {
+        setTimeUnit((prevTimeUnit) => Math.min(prevTimeUnit + 0.05, 1));
+      }
+      if (e.key === "Enter") {
+        handleSubmit(e);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
